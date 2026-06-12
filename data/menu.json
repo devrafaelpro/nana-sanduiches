@@ -1,0 +1,614 @@
+{
+  "restaurant": {
+    "name": "Nanã Sanduíches",
+    "tagline": "O melhor lanche da região, experimente! 👑",
+    "phone": "5531986460640",
+    "logo": "https://raw.githubusercontent.com/devrafaelpro/nana-sanduiches/main/public/logo.png",
+    "cover": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1400&q=80",
+    "deliveryNote": "Taxa de entrega a confirmar",
+    "deliveryFee": 0,
+    "hours": [
+      { "aberto": true, "de": "18:00", "ate": "23:59" },
+      { "aberto": false, "de": "18:00", "ate": "23:59" },
+      { "aberto": false, "de": "18:00", "ate": "23:59" },
+      { "aberto": false, "de": "18:00", "ate": "23:59" },
+      { "aberto": true, "de": "18:00", "ate": "23:59" },
+      { "aberto": true, "de": "18:00", "ate": "23:59" },
+      { "aberto": true, "de": "18:00", "ate": "23:59" }
+    ]
+  },
+  "theme": {
+    "brand": "#e02020",
+    "brandDark": "#b51616",
+    "brandLight": "#ff6b5e",
+    "bg": "#150909",
+    "surface": "#1f0f0f",
+    "surface2": "#2b1515",
+    "line": "#3e1e1e",
+    "line2": "#502828",
+    "text": "#f6e9e9",
+    "heading": "#ffffff"
+  },
+  "categories": [
+    { "id": "burgers", "name": "Hambúrgueres", "icon": "🍔", "upsell": false },
+    { "id": "combos", "name": "Combos", "icon": "🔥", "upsell": false },
+    { "id": "hotdogs", "name": "Hot Dogs", "icon": "🌭", "upsell": false },
+    { "id": "mistos", "name": "Mistos", "icon": "🥪", "upsell": false },
+    { "id": "massas", "name": "Macarrão & Omelete", "icon": "🍝", "upsell": false },
+    { "id": "fritas", "name": "Fritas", "icon": "🍟", "upsell": true },
+    { "id": "bebidas", "name": "Bebidas", "icon": "🥤", "upsell": true },
+    { "id": "cervejas", "name": "Cervejas", "icon": "🍺", "upsell": true }
+  ],
+  "addons": [
+    { "id": "ovo-codorna", "name": "Ovo de codorna", "price": 1.0 },
+    { "id": "ovo", "name": "Ovo", "price": 1.5 },
+    { "id": "mucarela", "name": "Muçarela", "price": 3.0 },
+    { "id": "hamburguer", "name": "Hambúrguer", "price": 3.0 },
+    { "id": "presunto", "name": "Presunto", "price": 3.0 },
+    { "id": "catupiry", "name": "Catupiry", "price": 3.0 },
+    { "id": "frango", "name": "Frango desfiado", "price": 4.0 },
+    { "id": "bacon", "name": "Bacon", "price": 4.0 }
+  ],
+  "products": [
+    {
+      "id": "b1",
+      "category": "burgers",
+      "name": "Hambúrguer",
+      "description": "Pão, hambúrguer, salada, batata palha, milho, ketchup e maionese.",
+      "price": 12.99,
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Salada", "Batata palha", "Milho", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b2",
+      "category": "burgers",
+      "name": "X-Burguer",
+      "description": "Pão, hambúrguer, salada, queijo, batata palha, milho, ketchup e maionese.",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Queijo", "Salada", "Batata palha", "Milho", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b3",
+      "category": "burgers",
+      "name": "X-Salada",
+      "description": "Pão, hambúrguer, presunto, queijo, salada, milho, batata palha, ketchup e maionese.",
+      "price": 16.99,
+      "image": "https://images.unsplash.com/photo-1603064752734-4c48eff53d05?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Presunto", "Queijo", "Salada", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b4",
+      "category": "burgers",
+      "name": "Hambúrguer Especial",
+      "description": "Pão, hambúrguer, bacon, salada, batata palha, milho, ketchup e maionese.",
+      "price": 18.99,
+      "image": "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Salada", "Batata palha", "Milho", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b5",
+      "category": "burgers",
+      "name": "X-Egg",
+      "description": "Pão, hambúrguer, ovo, queijo, salada, milho, batata palha, ketchup e maionese.",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Ovo", "Queijo", "Salada", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b6",
+      "category": "burgers",
+      "name": "X-Califórnia",
+      "description": "Pão, presunto, queijo, abacaxi, salada, milho, batata palha, ketchup e maionese.",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Presunto", "Queijo", "Abacaxi", "Salada", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b7",
+      "category": "burgers",
+      "name": "X-Bacon",
+      "description": "Pão, hambúrguer, bacon, queijo, salada, milho, batata palha, ketchup e maionese.",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Queijo", "Salada", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b8",
+      "category": "burgers",
+      "name": "Nanã Burger",
+      "description": "Pão, hambúrguer de frango, ovo, bacon, queijo, salada, milho, batata palha, ketchup e maionese.",
+      "price": 20.99,
+      "image": "https://images.unsplash.com/photo-1603064752734-4c48eff53d05?auto=format&fit=crop&w=800&q=80",
+      "featured": true,
+      "ingredients": ["Ovo", "Bacon", "Queijo", "Salada", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b9",
+      "category": "burgers",
+      "name": "X-Egg Bacon",
+      "description": "Pão, hambúrguer, ovos, bacon, queijo, salada, milho, batata palha, ketchup e maionese.",
+      "price": 20.99,
+      "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Ovos", "Bacon", "Queijo", "Salada", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b10",
+      "category": "burgers",
+      "name": "X-Tudo",
+      "description": "Pão, hambúrguer, ovo, bacon, queijo, presunto, salada, milho, batata palha, ketchup e maionese.",
+      "price": 22.99,
+      "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800&q=80",
+      "featured": true,
+      "ingredients": ["Ovo", "Bacon", "Queijo", "Presunto", "Salada", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b11",
+      "category": "burgers",
+      "name": "X-Tudo Especial",
+      "description": "Pão, 2 carnes, 2 ovos, bacon, catupiry, presunto, mussarela, abacaxi, alface, tomate, milho, batata palha, ketchup e maionese.",
+      "price": 28.99,
+      "image": "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Catupiry", "Presunto", "Mussarela", "Abacaxi", "Alface", "Tomate", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "b12",
+      "category": "burgers",
+      "name": "X-Tudo Nanã Especial",
+      "description": "Pão, 2 hambúrgueres de 90g, 2 ovos, 2 presuntos, 2 muçarelas, frango desfiado, bacon, cheddar, salada, milho, batata palha, ketchup e maionese.",
+      "price": 32.99,
+      "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800&q=80",
+      "featured": true,
+      "ingredients": ["Frango desfiado", "Bacon", "Cheddar", "Salada", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "c1",
+      "category": "combos",
+      "name": "Combo 01 • X-Tudo",
+      "description": "1 X-Tudo + 1 Coca-Cola 250ml.",
+      "price": 24.99,
+      "image": "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=800&q=80",
+      "featured": true,
+      "ingredients": []
+    },
+    {
+      "id": "c2",
+      "category": "combos",
+      "name": "Combo 02 • X-Bacon",
+      "description": "1 X-Bacon + 1 Guaraná Antártica 350ml.",
+      "price": 24.99,
+      "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c3",
+      "category": "combos",
+      "name": "Combo 03 • 2 X-Bacon",
+      "description": "2 X-Bacon + 1 Guaraná Quate 2L.",
+      "price": 45.99,
+      "image": "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c4",
+      "category": "combos",
+      "name": "Combo 04 • Duplo Cheddar",
+      "description": "1 Duplo Cheddar + 1 Guaraná Quate 200ml.",
+      "price": 28.99,
+      "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c5",
+      "category": "combos",
+      "name": "Combo 05 • 2 X-Egg Bacon",
+      "description": "2 X-Egg Bacon + 1 Guaraná Quate 2L.",
+      "price": 47.99,
+      "image": "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c6",
+      "category": "combos",
+      "name": "Combo 06 • 2 X-Tudo",
+      "description": "2 X-Tudo + 1 Guaraná Quate 2L.",
+      "price": 49.99,
+      "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c7",
+      "category": "combos",
+      "name": "Combo 07 • 3 Hambúrguer Especial",
+      "description": "3 Hambúrguer Especial + 1 Guaraná Quate 2L.",
+      "price": 62.99,
+      "image": "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c8",
+      "category": "combos",
+      "name": "Combo 08 • 3 X-Tudo",
+      "description": "3 X-Tudo + 1 Guaraná Quate 1L.",
+      "price": 74.99,
+      "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c9",
+      "category": "combos",
+      "name": "Combo 09 • X-Tudo + Fritas",
+      "description": "1 X-Tudo + fritas 200g + 1 Guaraná lata 350ml.",
+      "price": 32.99,
+      "image": "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=800&q=80",
+      "featured": true,
+      "ingredients": []
+    },
+    {
+      "id": "c10",
+      "category": "combos",
+      "name": "Combo 10 • 3 X-Tudo Especial",
+      "description": "3 X-Tudo Especial + 1 Guaraná Quate 2L.",
+      "price": 92.99,
+      "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c11",
+      "category": "combos",
+      "name": "Combo 11 • 4 X-Egg",
+      "description": "4 X-Egg + 1 Guaraná Quate 2L.",
+      "price": 81.99,
+      "image": "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c12",
+      "category": "combos",
+      "name": "Combo 12 • 4 X-Tudo",
+      "description": "4 X-Tudo + 1 Guaraná Quate 2L.",
+      "price": 94.99,
+      "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c13",
+      "category": "combos",
+      "name": "Combo 13 • X-Tudo Especial",
+      "description": "1 X-Tudo Especial + 1 Coca-Cola lata.",
+      "price": 38.0,
+      "image": "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c14",
+      "category": "combos",
+      "name": "Combo 14 • 3 X-Califórnia",
+      "description": "3 X-Califórnia + 1 Guaraná Quate 2L.",
+      "price": 65.0,
+      "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "c15",
+      "category": "combos",
+      "name": "Combo 15 • 2 Hot Dogs",
+      "description": "2 Hot Dogs + 1 Guaraná McQueen 1L.",
+      "price": 49.99,
+      "image": "https://images.unsplash.com/photo-1496905583330-eb54c7e5915a?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "h1",
+      "category": "hotdogs",
+      "name": "Hot Dog Tradicional",
+      "description": "Pão, salsicha, ovo de codorna, queijo, vinagrete, milho, uva passa, batata palha, ketchup e maionese.",
+      "price": 15.99,
+      "image": "https://images.unsplash.com/photo-1496905583330-eb54c7e5915a?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Ovo de codorna", "Queijo", "Vinagrete", "Milho", "Uva passa", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "h2",
+      "category": "hotdogs",
+      "name": "Hot Dog com Bacon",
+      "description": "Pão, salsicha, bacon, milho e batata crocante.",
+      "price": 15.99,
+      "image": "https://images.unsplash.com/photo-1496905583330-eb54c7e5915a?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Milho", "Batata crocante"]
+    },
+    {
+      "id": "h3",
+      "category": "hotdogs",
+      "name": "Hot Dog com Frango",
+      "description": "Pão, salsicha, frango desfiado, molho especial, milho e batata crocante.",
+      "price": 16.99,
+      "image": "https://images.unsplash.com/photo-1496905583330-eb54c7e5915a?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Frango desfiado", "Molho especial", "Milho", "Batata crocante"]
+    },
+    {
+      "id": "h4",
+      "category": "hotdogs",
+      "name": "Duplo Especial Nanã",
+      "description": "Pão, 2 salsichas, bacon, frango desfiado, molho especial, milho e batata crocante.",
+      "price": 18.99,
+      "image": "https://images.unsplash.com/photo-1496905583330-eb54c7e5915a?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Frango desfiado", "Molho especial", "Milho", "Batata crocante"]
+    },
+    {
+      "id": "h5",
+      "category": "hotdogs",
+      "name": "Mega Sena",
+      "description": "Pão, 3 salsichas, frango e bacon, cheddar, molho à bolonhesa, milho e batata crocante.",
+      "price": 22.99,
+      "image": "https://images.unsplash.com/photo-1496905583330-eb54c7e5915a?auto=format&fit=crop&w=800&q=80",
+      "featured": true,
+      "ingredients": ["Frango", "Bacon", "Cheddar", "Molho à bolonhesa", "Milho", "Batata crocante"]
+    },
+    {
+      "id": "h6",
+      "category": "hotdogs",
+      "name": "X-Dog",
+      "description": "Pão, salsicha, frango desfiado, bacon, queijo, milho, batata palha, ketchup e maionese.",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1496905583330-eb54c7e5915a?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Frango desfiado", "Bacon", "Queijo", "Milho", "Batata palha", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "m1",
+      "category": "mistos",
+      "name": "Misto Simples",
+      "description": "Pão, presunto, queijo, ketchup e maionese.",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Presunto", "Queijo", "Ketchup", "Maionese"]
+    },
+    {
+      "id": "m2",
+      "category": "mistos",
+      "name": "Mistão Nanã Tradicional",
+      "description": "Pão, 2 presuntos e 2 queijos.",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "m3",
+      "category": "mistos",
+      "name": "Mistão Nanã Especial",
+      "description": "Pão de hambúrguer, 2 presuntos, 2 queijos e ovo.",
+      "price": 22.99,
+      "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "m4",
+      "category": "mistos",
+      "name": "Mistão Americano",
+      "description": "Pão de hambúrguer, presunto, muçarela e hambúrguer de 90g.",
+      "price": 25.99,
+      "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "ma1",
+      "category": "massas",
+      "name": "Macarrão à Bolonhesa (Pequeno)",
+      "description": "Macarrão com molho à bolonhesa.",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "ma2",
+      "category": "massas",
+      "name": "Macarrão à Bolonhesa (Grande)",
+      "description": "Macarrão com molho à bolonhesa.",
+      "price": 24.99,
+      "image": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "ma3",
+      "category": "massas",
+      "name": "Macarrão Bacon (Pequeno)",
+      "description": "Macarrão, bacon, milho, vinagrete, molho shoyu, molho de alho, muçarela e presunto.",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Milho", "Vinagrete", "Molho shoyu", "Molho de alho", "Muçarela", "Presunto"]
+    },
+    {
+      "id": "ma4",
+      "category": "massas",
+      "name": "Macarrão Bacon (Grande)",
+      "description": "Macarrão, bacon, milho, vinagrete, molho shoyu, molho de alho, muçarela e presunto.",
+      "price": 21.99,
+      "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Milho", "Vinagrete", "Molho shoyu", "Molho de alho", "Muçarela", "Presunto"]
+    },
+    {
+      "id": "ma5",
+      "category": "massas",
+      "name": "Omelete",
+      "description": "Ovo, bacon, vinagrete, muçarela e presunto.",
+      "price": 18.0,
+      "image": "https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Vinagrete", "Muçarela", "Presunto"]
+    },
+    {
+      "id": "f1",
+      "category": "fritas",
+      "name": "Fritas (Pequena)",
+      "description": "Batata frita, bacon e muçarela.",
+      "price": 20.0,
+      "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Muçarela"]
+    },
+    {
+      "id": "f2",
+      "category": "fritas",
+      "name": "Fritas (Grande)",
+      "description": "Batata frita, bacon e muçarela.",
+      "price": 28.0,
+      "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": ["Bacon", "Muçarela"]
+    },
+    {
+      "id": "d1",
+      "category": "bebidas",
+      "name": "Coca-Cola, Fanta ou Guaraná 350ml",
+      "description": "Lata bem gelada.",
+      "price": 5.99,
+      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "d2",
+      "category": "bebidas",
+      "name": "Suco Del Valle (lata)",
+      "description": "Vários sabores.",
+      "price": 6.99,
+      "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "d3",
+      "category": "bebidas",
+      "name": "Mate Couro 1 litro",
+      "description": "Bem gelado.",
+      "price": 7.99,
+      "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "d4",
+      "category": "bebidas",
+      "name": "Coca-Cola 600ml",
+      "description": "Bem gelada.",
+      "price": 8.99,
+      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "d5",
+      "category": "bebidas",
+      "name": "Kuat Antarctica ou Mate Couro 2 litros",
+      "description": "Pra galera toda.",
+      "price": 11.99,
+      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "d6",
+      "category": "bebidas",
+      "name": "Suco 1 litro",
+      "description": "Vários sabores.",
+      "price": 12.99,
+      "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "d7",
+      "category": "bebidas",
+      "name": "Fanta 2 litros",
+      "description": "Bem gelada.",
+      "price": 13.99,
+      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "d8",
+      "category": "bebidas",
+      "name": "Coca-Cola 2 litros",
+      "description": "Bem gelada.",
+      "price": 15.99,
+      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "cv1",
+      "category": "cervejas",
+      "name": "Kaiser (latão)",
+      "description": "Latão gelado.",
+      "price": 5.99,
+      "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "cv2",
+      "category": "cervejas",
+      "name": "Brahma (latão)",
+      "description": "Latão gelado.",
+      "price": 6.99,
+      "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "cv3",
+      "category": "cervejas",
+      "name": "Original (latão)",
+      "description": "Latão gelado.",
+      "price": 7.99,
+      "image": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    },
+    {
+      "id": "cv4",
+      "category": "cervejas",
+      "name": "Heineken (latão)",
+      "description": "Latão gelado.",
+      "price": 8.99,
+      "image": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=800&q=80",
+      "featured": false,
+      "ingredients": []
+    }
+  ]
+}

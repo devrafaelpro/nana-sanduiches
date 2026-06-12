@@ -1,0 +1,15 @@
+/node_modules
+/.next
+/out
+/build
+.DS_Store
+*.pem
+.env*.local
+npm-debug.log*
+.vercel
+
+# Claude local settings
+.claude/settings.local.json
+
+# pedidos locais (dev)
+data/pedidos.json
