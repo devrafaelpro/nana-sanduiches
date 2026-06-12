@@ -44,6 +44,7 @@ export async function POST(request) {
     obs: txt(b.obs, 200),
     entrega: Number(b.entrega) || 0,
     total: Number(b.total) || 0,
+    origem: b.origem === "manual" ? "manual" : "site",
     items: b.items.slice(0, 50).map((i) => ({
       qtd: Math.max(1, Number(i.qtd) || 1),
       nome: txt(i.nome, 80),

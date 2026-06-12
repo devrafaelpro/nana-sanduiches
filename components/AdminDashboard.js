@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { formatPrice, discountPercent } from "@/lib/format";
+import { formatPrice, discountPercent, maskFone } from "@/lib/format";
 import { DEFAULT_THEME, THEME_PRESETS, themeToCss } from "@/lib/theme";
 import { DIAS } from "@/lib/horario";
 
@@ -1070,6 +1070,12 @@ const fmtHora = (iso) =>
 
 function PedidosTab({ menu }) {
   const [pedidos, setPedidos] = useState(null);
+  const [manualAberto, setManualAberto] = useState(false);
+  const [mForm, setMForm] = useState({
+    nome: "", tel: "", end: "", pag: "Dinheiro", entrega: "", obs: "",
+    itens: [{ qtd: 1, nome: "", valor: "" }],
+  });
+  const [mSalvando, setMSalvando] = useState(false);
   const [printing, setPrinting] = useState(null);
   const [filtro, setFiltro] = useState("ativos");
   const [chatAberto, setChatAberto] = useState({});
@@ -1230,6 +1236,59 @@ function PedidosTab({ menu }) {
     }, 120);
   }
 
+  function mSet(patch) {
+    setMForm((f) => ({ ...f, ...patch }));
+  }
+  function mSetItem(idx, patch) {
+    setMForm((f) => ({
+      ...f,
+      itens: f.itens.map((i, n) => (n === idx ? { ...i, ...patch } : i)),
+    }));
+  }
+  const mTotalItens = mForm.itens.reduce(
+    (s, i) => s + (Number(i.qtd) || 0) * (Number(i.valor) || 0), 0
+  );
+  const mTotal = mTotalItens + (Number(mForm.entrega) || 0);
+
+  // Pedido anotado por telefone/balcão — entra no mesmo fluxo dos do site
+  async function criarManual() {
+    const itensOk = mForm.itens.filter((i) => i.nome.trim() && Number(i.valor) > 0);
+    if (!mForm.nome.trim() || itensOk.length === 0 || mSalvando) return;
+    setMSalvando(true);
+    try {
+      const res = await fetch("/api/pedidos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: mForm.nome.trim(),
+          telefone: mForm.tel.replace(/\D/g, ""),
+          endereco: mForm.end.trim(),
+          referencia: "",
+          pagamento: mForm.pag,
+          troco: "",
+          obs: mForm.obs.trim(),
+          entrega: Number(mForm.entrega) || 0,
+          total: mTotal,
+          origem: "manual",
+          items: itensOk.map((i) => ({
+            qtd: Math.max(1, Number(i.qtd) || 1),
+            nome: i.nome.trim(),
+            adicionais: [],
+            sem: [],
+            total: (Number(i.qtd) || 1) * (Number(i.valor) || 0),
+          })),
+        }),
+      });
+      if (res.ok) {
+        setMForm({ nome: "", tel: "", end: "", pag: "Dinheiro", entrega: "", obs: "",
+                   itens: [{ qtd: 1, nome: "", valor: "" }] });
+        setManualAberto(false);
+        carregar();
+      }
+    } catch {}
+    setMSalvando(false);
+  }
+
   const contagem = (f) => (pedidos || []).filter(f.test).length;
   const visiveis = (pedidos || []).filter(
     FILTROS.find((f) => f.id === filtro).test
@@ -1294,10 +1353,146 @@ function PedidosTab({ menu }) {
             ))}
           </div>
         </div>
-        <button onClick={carregar} className="btn-ghost px-4 py-2 text-sm">
-          ↻ Atualizar
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setManualAberto((v) => !v)}
+            className={`rounded-full px-4 py-2 text-sm font-bold transition ${
+              manualAberto ? "bg-ink-600 text-white" : "bg-brand text-white hover:bg-brand-dark"
+            }`}
+          >
+            {manualAberto ? "✕ Fechar" : "➕ Pedido manual"}
+          </button>
+          <button onClick={carregar} className="btn-ghost px-4 py-2 text-sm">
+            ↻ Atualizar
+          </button>
+        </div>
       </div>
+
+      {/* Pedido anotado por telefone/balcão */}
+      {manualAberto && (
+        <div className="space-y-3 rounded-2xl border border-brand/40 bg-ink-800 p-4 shadow-card">
+          <p className="font-display text-lg font-bold text-white">
+            📞 Pedido manual
+            <span className="ml-2 text-sm font-normal text-zinc-500">
+              telefone, balcão, WhatsApp...
+            </span>
+          </p>
+          <div className="grid gap-2 sm:grid-cols-2">
+            <input
+              className="input"
+              placeholder="Nome do cliente *"
+              value={mForm.nome}
+              onChange={(e) => mSet({ nome: e.target.value })}
+            />
+            <input
+              className="input"
+              placeholder="WhatsApp (opcional)"
+              inputMode="tel"
+              value={mForm.tel}
+              onChange={(e) => mSet({ tel: maskFone(e.target.value) })}
+            />
+          </div>
+          <input
+            className="input"
+            placeholder="Endereço (vazio = retirada no balcão)"
+            value={mForm.end}
+            onChange={(e) => mSet({ end: e.target.value })}
+          />
+
+          {/* Itens */}
+          <div className="space-y-2">
+            {mForm.itens.map((i, idx) => (
+              <div key={idx} className="flex gap-2">
+                <input
+                  type="number"
+                  min="1"
+                  className="input w-16 px-2 text-center"
+                  value={i.qtd}
+                  onChange={(e) => mSetItem(idx, { qtd: e.target.value })}
+                />
+                <input
+                  className="input flex-1"
+                  placeholder="Item (ex: X-Tudo)"
+                  value={i.nome}
+                  onChange={(e) => mSetItem(idx, { nome: e.target.value })}
+                />
+                <input
+                  type="number"
+                  step="0.01"
+                  className="input w-24 px-2"
+                  placeholder="R$ un."
+                  value={i.valor}
+                  onChange={(e) => mSetItem(idx, { valor: e.target.value })}
+                />
+                {mForm.itens.length > 1 && (
+                  <button
+                    onClick={() =>
+                      setMForm((f) => ({
+                        ...f,
+                        itens: f.itens.filter((_, n) => n !== idx),
+                      }))
+                    }
+                    className="shrink-0 px-1 text-red-400"
+                    aria-label="Remover item"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            ))}
+            <button
+              onClick={() =>
+                setMForm((f) => ({
+                  ...f,
+                  itens: [...f.itens, { qtd: 1, nome: "", valor: "" }],
+                }))
+              }
+              className="btn-ghost w-full py-2 text-sm"
+            >
+              + Adicionar item
+            </button>
+          </div>
+
+          <div className="grid gap-2 sm:grid-cols-3">
+            <select
+              className="input"
+              value={mForm.pag}
+              onChange={(e) => mSet({ pag: e.target.value })}
+            >
+              {["Dinheiro", "Pix", "Cartão"].map((o) => (
+                <option key={o}>{o}</option>
+              ))}
+            </select>
+            <input
+              type="number"
+              step="0.01"
+              className="input"
+              placeholder="Taxa de entrega (R$)"
+              value={mForm.entrega}
+              onChange={(e) => mSet({ entrega: e.target.value })}
+            />
+            <input
+              className="input"
+              placeholder="Observações"
+              value={mForm.obs}
+              onChange={(e) => mSet({ obs: e.target.value })}
+            />
+          </div>
+
+          <div className="flex items-center justify-between gap-3 border-t border-ink-700 pt-3">
+            <span className="font-display text-lg font-bold text-brand-light">
+              Total: {formatPrice(mTotal)}
+            </span>
+            <button
+              onClick={criarManual}
+              disabled={mSalvando || !mForm.nome.trim() || mTotalItens <= 0}
+              className="btn-primary px-6 py-2.5 text-sm disabled:opacity-50"
+            >
+              {mSalvando ? "Salvando..." : "✓ Criar pedido"}
+            </button>
+          </div>
+        </div>
+      )}
 
       {pedidos === null && (
         <p className="py-10 text-center text-zinc-500">Carregando...</p>
@@ -1335,9 +1530,16 @@ function PedidosTab({ menu }) {
                 </span>
                 <span className="text-sm text-zinc-400">{fmtHora(p.criadoEm)}</span>
               </div>
-              <span className={`rounded-full border px-2.5 py-0.5 text-xs font-bold ${st.cor}`}>
-                {novo ? "🆕 " : ""}
-                {st.label}
+              <span className="flex items-center gap-1.5">
+                {p.origem === "manual" && (
+                  <span className="rounded-full bg-ink-700 px-2 py-0.5 text-[10px] font-bold text-zinc-400">
+                    📞 MANUAL
+                  </span>
+                )}
+                <span className={`rounded-full border px-2.5 py-0.5 text-xs font-bold ${st.cor}`}>
+                  {novo ? "🆕 " : ""}
+                  {st.label}
+                </span>
               </span>
             </div>
 
