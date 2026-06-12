@@ -769,7 +769,7 @@
       "name": "Coca-Cola, Fanta ou Guaraná 350ml",
       "description": "Lata bem gelada.",
       "price": 5.99,
-      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/devrafaelpro/nana-sanduiches/main/public/produtos/d1.jpg",
       "featured": false,
       "ingredients": []
     },
@@ -789,7 +789,7 @@
       "name": "Mate Couro 1 litro",
       "description": "Bem gelado.",
       "price": 7.99,
-      "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/devrafaelpro/nana-sanduiches/main/public/produtos/d3.jpg",
       "featured": false,
       "ingredients": []
     },
@@ -799,7 +799,7 @@
       "name": "Coca-Cola 600ml",
       "description": "Bem gelada.",
       "price": 8.99,
-      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/devrafaelpro/nana-sanduiches/main/public/produtos/d4.jpg",
       "featured": false,
       "ingredients": []
     },
@@ -809,7 +809,7 @@
       "name": "Kuat Antarctica ou Mate Couro 2 litros",
       "description": "Pra galera toda.",
       "price": 11.99,
-      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/devrafaelpro/nana-sanduiches/main/public/produtos/d5.jpg",
       "featured": false,
       "ingredients": []
     },
@@ -819,7 +819,7 @@
       "name": "Suco 1 litro",
       "description": "Vários sabores.",
       "price": 12.99,
-      "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/devrafaelpro/nana-sanduiches/main/public/produtos/d6.jpg",
       "featured": false,
       "ingredients": []
     },
@@ -829,7 +829,7 @@
       "name": "Fanta 2 litros",
       "description": "Bem gelada.",
       "price": 13.99,
-      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/devrafaelpro/nana-sanduiches/main/public/produtos/d7.jpg",
       "featured": false,
       "ingredients": []
     },
@@ -839,7 +839,7 @@
       "name": "Coca-Cola 2 litros",
       "description": "Bem gelada.",
       "price": 15.99,
-      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/devrafaelpro/nana-sanduiches/main/public/produtos/d8.jpg",
       "featured": false,
       "ingredients": []
     },
