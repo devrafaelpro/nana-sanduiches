@@ -9,10 +9,10 @@ const STORAGE_KEY = "cardapio_cart";
 // Gera uma chave única para um item levando em conta os adicionais escolhidos e
 // os ingredientes removidos, para que o mesmo lanche com personalizações
 // diferentes seja tratado como linhas separadas no carrinho.
-function lineKey(productId, addonIds, removed) {
+function lineKey(productId, addonIds, removed, sabores = []) {
   return `${productId}::add:${[...addonIds].sort().join(",")}::rem:${[...removed]
     .sort()
-    .join(",")}`;
+    .join(",")}::sab:${[...sabores].sort().join(",")}`;
 }
 
 export function CartProvider({ children }) {
@@ -36,9 +36,15 @@ export function CartProvider({ children }) {
     } catch {}
   }, [items, loaded]);
 
-  function addItem(product, { addons = [], removedIngredients = [], quantity = 1 } = {}) {
+  function addItem(
+    product,
+    { addons = [], removedIngredients = [], quantity = 1, sabores = [] } = {}
+  ) {
     const addonIds = addons.map((a) => a.id);
-    const key = lineKey(product.id, addonIds, removedIngredients);
+    const nomesSabores = sabores.map((sb) => sb.nome);
+    // Meio a meio: cobra o valor do sabor mais caro
+    const extraSabor = sabores.reduce((m, sb) => Math.max(m, sb.extra || 0), 0);
+    const key = lineKey(product.id, addonIds, removedIngredients, nomesSabores);
     setItems((prev) => {
       const existing = prev.find((i) => i.key === key);
       if (existing) {
@@ -53,9 +59,10 @@ export function CartProvider({ children }) {
           productId: product.id,
           name: product.name,
           image: product.image,
-          basePrice: product.price,
+          basePrice: product.price + extraSabor,
           addons,
           removedIngredients,
+          sabores: nomesSabores,
           quantity,
         },
       ];

@@ -1332,6 +1332,11 @@ function PedidosTab({ menu }) {
                     {i.qtd}x {i.nome}
                   </span>{" "}
                   <span className="text-brand-light">{formatPrice(i.total)}</span>
+                  {i.sabores?.length > 0 && (
+                    <span className="block pl-4 text-xs text-brand-light">
+                      🍕 {i.sabores.length > 1 ? i.sabores.map((sb) => `½ ${sb}`).join(" + ") : i.sabores[0]}
+                    </span>
+                  )}
                   {i.adicionais?.length > 0 && (
                     <span className="block pl-4 text-xs text-zinc-500">
                       + {i.adicionais.join(", ")}
@@ -1710,6 +1715,9 @@ function Comanda({ pedido, restaurante, largura = "80" }) {
           <p style={{ fontWeight: 700 }}>
             {i.qtd}x {i.nome} ... {formatPrice(i.total)}
           </p>
+          {i.sabores?.length > 0 && (
+            <p>&nbsp;&nbsp;SABOR: {i.sabores.join(" / ")}</p>
+          )}
           {i.adicionais?.length > 0 && <p>&nbsp;&nbsp;+ {i.adicionais.join(", ")}</p>}
           {i.sem?.length > 0 && <p>&nbsp;&nbsp;SEM: {i.sem.join(", ")}</p>}
         </div>

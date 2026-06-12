@@ -47,6 +47,9 @@ export async function POST(request) {
     items: b.items.slice(0, 50).map((i) => ({
       qtd: Math.max(1, Number(i.qtd) || 1),
       nome: txt(i.nome, 80),
+      sabores: (Array.isArray(i.sabores) ? i.sabores : [])
+        .slice(0, 4)
+        .map((a) => txt(a, 60)),
       adicionais: (Array.isArray(i.adicionais) ? i.adicionais : [])
         .slice(0, 12)
         .map((a) => txt(a, 60)),

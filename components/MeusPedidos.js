@@ -123,12 +123,19 @@ export default function MeusPedidos({ restaurant }) {
     return (
       <div className="space-y-1 px-4 pt-3 text-sm text-zinc-300">
         {p.items.map((i, idx) => (
-          <p key={idx}>
-            <b className="text-white">
-              {i.qtd}x {i.nome}
-            </b>{" "}
-            <span className="text-brand-light">{formatPrice(i.total)}</span>
-          </p>
+          <div key={idx}>
+            <p>
+              <b className="text-white">
+                {i.qtd}x {i.nome}
+              </b>{" "}
+              <span className="text-brand-light">{formatPrice(i.total)}</span>
+            </p>
+            {i.sabores?.length > 0 && (
+              <p className="pl-4 text-xs text-zinc-500">
+                🍕 {i.sabores.length > 1 ? i.sabores.map((sb) => `½ ${sb}`).join(" + ") : i.sabores[0]}
+              </p>
+            )}
+          </div>
         ))}
         <p className="pt-1 text-zinc-400">
           {p.entrega > 0 && <>Entrega {formatPrice(p.entrega)} • </>}

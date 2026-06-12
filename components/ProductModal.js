@@ -9,7 +9,10 @@ export default function ProductModal({ product, addons, onClose }) {
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [removedIngredients, setRemovedIngredients] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [sabores, setSabores] = useState([]);
   const ingredients = product.ingredients || [];
+  const escolheSabor = product.sabores?.lista?.length > 0;
+  const maxSabores = product.sabores?.max || 1;
 
   // Bloqueia o scroll do fundo enquanto o modal está aberto
   useEffect(() => {
@@ -34,12 +37,34 @@ export default function ProductModal({ product, addons, onClose }) {
     );
   }
 
+  function toggleSabor(sb) {
+    setSabores((prev) => {
+      if (prev.find((x) => x.nome === sb.nome)) {
+        return prev.filter((x) => x.nome !== sb.nome);
+      }
+      if (prev.length >= maxSabores) {
+        // já está no limite: troca o último escolhido
+        return [...prev.slice(0, maxSabores - 1), sb];
+      }
+      return [...prev, sb];
+    });
+  }
+
   const addonsTotal = selectedAddons.reduce((s, a) => s + a.price, 0);
-  const unitPrice = product.price + addonsTotal;
+  // Meio a meio: vale o sabor mais caro
+  const extraSabor = sabores.reduce((m, sb) => Math.max(m, sb.extra || 0), 0);
+  const unitPrice = product.price + extraSabor + addonsTotal;
   const total = unitPrice * quantity;
+  const faltaSabor = escolheSabor && sabores.length === 0;
 
   function handleAdd() {
-    addItem(product, { addons: selectedAddons, removedIngredients, quantity });
+    if (faltaSabor) return;
+    addItem(product, {
+      addons: selectedAddons,
+      removedIngredients,
+      quantity,
+      sabores,
+    });
     onClose();
   }
 
@@ -102,6 +127,68 @@ export default function ProductModal({ product, addons, onClose }) {
             <p className="mt-3 font-display text-2xl font-extrabold text-brand-light">
               {formatPrice(product.price)}
             </p>
+          )}
+
+          {/* Sabores (pizzas: 1 ou 2 — meio a meio) */}
+          {escolheSabor && (
+            <div className="mt-6">
+              <h3 className="mb-1 font-display text-lg font-bold text-white">
+                {product.sabores.titulo || "Escolha o sabor"}
+                <span className="ml-2 text-sm font-normal text-zinc-500">
+                  {sabores.length}/{maxSabores}
+                </span>
+              </h3>
+              <p className="mb-3 text-sm text-zinc-500">
+                {maxSabores > 1
+                  ? `Escolha até ${maxSabores} sabores (meio a meio) — vale o valor do sabor mais caro`
+                  : "Escolha 1 sabor"}
+              </p>
+              <div className="flex flex-col gap-2">
+                {product.sabores.lista.map((sb) => {
+                  const ativo = sabores.find((x) => x.nome === sb.nome);
+                  return (
+                    <button
+                      key={sb.nome}
+                      onClick={() => toggleSabor(sb)}
+                      className={`flex items-center justify-between rounded-xl border px-4 py-3 text-left transition ${
+                        ativo
+                          ? "border-brand bg-brand/10"
+                          : "border-ink-600 bg-ink-700 hover:border-ink-500"
+                      }`}
+                    >
+                      <span className="min-w-0">
+                        <span className="block font-medium text-white">
+                          {sb.nome}
+                        </span>
+                        {sb.desc && (
+                          <span className="block text-xs text-zinc-500">
+                            {sb.desc}
+                          </span>
+                        )}
+                      </span>
+                      <span className="ml-3 flex shrink-0 items-center gap-3">
+                        {sb.extra > 0 && (
+                          <span className="text-sm font-semibold text-brand-light">
+                            + {formatPrice(sb.extra)}
+                          </span>
+                        )}
+                        <span
+                          className={`flex h-6 w-6 items-center justify-center rounded-full border-2 transition ${
+                            ativo ? "border-brand bg-brand text-white" : "border-ink-500"
+                          }`}
+                        >
+                          {ativo && (
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M20 6 9 17l-5-5" />
+                            </svg>
+                          )}
+                        </span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           )}
 
           {/* Ingredientes (removíveis) */}
@@ -229,10 +316,14 @@ export default function ProductModal({ product, addons, onClose }) {
 
         {/* Botão fixo */}
         <div className="shrink-0 border-t border-ink-700 bg-ink-800 p-4">
-          <button onClick={handleAdd} className="btn-primary w-full py-4 text-lg">
-            Adicionar
-            <span className="opacity-80">•</span>
-            {formatPrice(total)}
+          <button
+            onClick={handleAdd}
+            disabled={faltaSabor}
+            className="btn-primary w-full py-4 text-lg disabled:opacity-50"
+          >
+            {faltaSabor ? "Escolha o sabor 👆" : "Adicionar"}
+            {!faltaSabor && <span className="opacity-80">•</span>}
+            {!faltaSabor && formatPrice(total)}
           </button>
         </div>
       </div>

@@ -156,6 +156,7 @@ export default function CartSheet({ restaurant, categories = [], products = [], 
             items: items.map((i) => ({
               qtd: i.quantity,
               nome: i.name,
+              sabores: i.sabores || [],
               adicionais: i.addons.map((a) => a.name),
               sem: i.removedIngredients || [],
               total: lineTotal(i),
@@ -177,6 +178,13 @@ export default function CartSheet({ restaurant, categories = [], products = [], 
 
     items.forEach((item) => {
       msg += `\n• ${item.quantity}x ${item.name}`;
+      if (item.sabores?.length > 0) {
+        msg += `\n   _Sabor${item.sabores.length > 1 ? "es" : ""}:_ ${
+          item.sabores.length > 1
+            ? item.sabores.map((sb) => `½ ${sb}`).join(" + ")
+            : item.sabores[0]
+        }`;
+      }
       if (item.addons.length > 0) {
         msg += `\n   _Adicionais:_ ${item.addons.map((a) => a.name).join(", ")}`;
       }
@@ -307,6 +315,14 @@ export default function CartSheet({ restaurant, categories = [], products = [], 
                           </svg>
                         </button>
                       </div>
+                      {item.sabores?.length > 0 && (
+                        <p className="mt-0.5 text-xs text-brand-light">
+                          🍕{" "}
+                          {item.sabores.length > 1
+                            ? item.sabores.map((sb) => `½ ${sb}`).join(" + ")
+                            : item.sabores[0]}
+                        </p>
+                      )}
                       {item.addons.length > 0 && (
                         <p className="mt-0.5 text-xs text-brand-light">
                           + {item.addons.map((a) => a.name).join(", ")}
