@@ -6,6 +6,13 @@ import { formatPrice, discountPercent } from "@/lib/format";
 
 export default function ProductModal({ product, addons, onClose }) {
   const { addItem } = useCart();
+  // Adicionais valem só pra categoria do produto (addon.cats) ou pra uma
+  // lista específica de produtos (addon.prods). Sem os campos = vale geral.
+  const addonsDoProduto = (addons || []).filter((a) => {
+    if (a.prods?.length) return a.prods.includes(product.id);
+    if (a.cats?.length) return a.cats.includes(product.category);
+    return true;
+  });
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [removedIngredients, setRemovedIngredients] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -231,7 +238,7 @@ export default function ProductModal({ product, addons, onClose }) {
           )}
 
           {/* Adicionais */}
-          {addons?.length > 0 && (
+          {addonsDoProduto.length > 0 && (
             <div className="mt-6">
               <h3 className="mb-3 font-display text-lg font-bold text-white">
                 Adicionais
@@ -240,7 +247,7 @@ export default function ProductModal({ product, addons, onClose }) {
                 </span>
               </h3>
               <div className="flex flex-col gap-2">
-                {addons.map((addon) => {
+                {addonsDoProduto.map((addon) => {
                   const active = selectedAddons.find((a) => a.id === addon.id);
                   return (
                     <button

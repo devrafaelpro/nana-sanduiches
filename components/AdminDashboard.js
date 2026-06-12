@@ -679,8 +679,8 @@ function AddonsTab({ menu, setMenu }) {
   return (
     <div className="space-y-4">
       <p className="text-sm text-zinc-400">
-        Extras pagos que o cliente pode adicionar a qualquer lanche (ex: bacon,
-        cheddar, ovo).
+        Extras pagos (ex: bacon, borda recheada). Marque em quais categorias
+        cada adicional aparece — sem nenhuma marcada, aparece em todas.
       </p>
       <button onClick={addAddon} className="btn-ghost w-full">
         + Adicionar adicional
@@ -717,6 +717,30 @@ function AddonsTab({ menu, setMenu }) {
             >
               Remover
             </button>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {(menu.categories || []).map((c) => {
+              const ativo = a.cats?.includes(c.id);
+              return (
+                <button
+                  key={c.id}
+                  onClick={() =>
+                    updateAddon(a.id, {
+                      cats: ativo
+                        ? (a.cats || []).filter((x) => x !== c.id)
+                        : [...(a.cats || []), c.id],
+                    })
+                  }
+                  className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                    ativo
+                      ? "bg-brand text-white"
+                      : "bg-ink-700 text-zinc-400 hover:bg-ink-600"
+                  }`}
+                >
+                  {c.icon} {c.name}
+                </button>
+              );
+            })}
           </div>
         </Card>
       ))}
